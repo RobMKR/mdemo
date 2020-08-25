@@ -11,6 +11,10 @@ class EmployeesController extends Controller
      */
     public function __invoke()
     {
+        if (!session()->has('employees')) {
+            return redirect('/');
+        }
+
         $matcher = new Matcher(session('employees'));
 
         return view('employees', [
